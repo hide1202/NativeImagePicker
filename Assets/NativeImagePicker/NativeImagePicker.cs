@@ -59,7 +59,7 @@ public static class NativeImagePicker
 	[DllImport("__Internal")]
 	private static extern string NativeGetImageBase64Data();
 #elif UNITY_ANDROID
-	static AndroidJavaClass _cls = new AndroidJavaClass("com.nhnent.pickerplugin.PickerPlugin");
+	static AndroidJavaClass _cls = new AndroidJavaClass("com.viewpoint.pickerplugin.PickerPlugin");
 	private static void NativePick(int callbackNum) 
 	{
 		_cls.CallStatic("pick", callbackNum);

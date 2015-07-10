@@ -1,4 +1,4 @@
-package com.nhnent.pickerplugin;
+package com.viewpoint.pickerplugin;
 
 import java.io.File;
 import java.io.IOException;

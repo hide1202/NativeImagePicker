@@ -28,6 +28,6 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
-		<activity android:name="com.nhnent.pickerplugin.PickerActivity"/>
+		<activity android:name="com.viewpoint.pickerplugin.PickerActivity"/>
     </application>
 </manifest>
