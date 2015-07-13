@@ -26,6 +26,11 @@ public class PickerPlugin {
 		
 		return Bitmap.createBitmap(source, x, y, squareSide, squareSide);
 	}
+	
+	private static Bitmap resize(Bitmap source, int width, int height)
+	{
+		return Bitmap.createScaledBitmap(source, width, height, false);
+	}
 
 	public static void pick(int callbackNum) {
 		_callbackNum = callbackNum;
@@ -42,6 +47,7 @@ public class PickerPlugin {
 	public static void returnUnity(Bitmap image) {
 		if (image != null) {
 			image = cropCenter(image);
+			image = resize(image, 160, 160);
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			image.compress(Bitmap.CompressFormat.JPEG, 100,
 					byteArrayOutputStream);
