@@ -50,10 +50,7 @@ public static class NativeImagePicker
 		return _callbacks.ContainsKey(callbackNum) ? _callbacks[callbackNum] : null;
 	}
 
-#if UNITY_EDITOR
-	private static void NativePick(int callbackNum) {}
-	private static string NativeGetImageBase64Data() { return null; }
-#elif UNITY_IPHONE
+#if UNITY_IPHONE
 	[DllImport("__Internal")]
 	private static extern void NativePick(int callbackNum);
 	[DllImport("__Internal")]
@@ -68,5 +65,8 @@ public static class NativeImagePicker
 	{ 
 		return _cls.CallStatic<string>("getImageBase64Data"); 
 	}
+#else
+    private static void NativePick(int callbackNum) { }
+    private static string NativeGetImageBase64Data() { return null; }
 #endif
 }

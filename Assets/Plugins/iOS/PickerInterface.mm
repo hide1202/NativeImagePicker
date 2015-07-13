@@ -20,7 +20,7 @@ char* imageData;
 @end
 
 @implementation PickerDelegate
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 	UIImage* img = info[UIImagePickerControllerOriginalImage];
 	
