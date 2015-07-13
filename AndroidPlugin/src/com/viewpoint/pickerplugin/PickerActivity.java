@@ -30,27 +30,23 @@ public class PickerActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode != RESULT_OK)
-		{
-			finish();
-			return;
-		}
+		if (resultCode == RESULT_OK) {
+			if (data != null) {
+				Bitmap bitmap = null;
+				String path = "";
 
-		if (data != null) {
-			Bitmap bitmap = null;
-			String path = "";
-
-			if (requestCode == 0) {
-				Log.d("Picker", "REQUEST OK");
-				Uri uri = data.getData();
-				Log.d("Picker", uri.getPath());
-				path = getRealPathFromURI(uri);
-				if (path == null)
-					path = uri.getPath();
-				if (path != null)
-					bitmap = BitmapFactory.decodeFile(path);
+				if (requestCode == 0) {
+					Log.d("Picker", "REQUEST OK");
+					Uri uri = data.getData();
+					Log.d("Picker", uri.getPath());
+					path = getRealPathFromURI(uri);
+					if (path == null)
+						path = uri.getPath();
+					if (path != null)
+						bitmap = BitmapFactory.decodeFile(path);
+				}
+				PickerPlugin.returnUnity(bitmap);
 			}
-			PickerPlugin.returnUnity(bitmap);
 		}
 		finish();
 	}
