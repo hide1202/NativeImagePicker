@@ -11,6 +11,8 @@
 
 const char* recevierName = "NativeImagePickerReceiver";
 const char* receiverMethod = "OnPick";
+const int resizeWidth = 160;
+const int resizeHeight = 160;
 char* imageData;
 
 @interface PickerDelegate : NSObject<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
@@ -34,6 +36,17 @@ char* imageData;
 		img = [UIImage imageWithCGImage:newImageRef];
 		CGImageRelease(newImageRef);
 	}
+	
+	// Resize start
+	UIGraphicsBeginImageContext(CGSizeMake(resizeWidth, resizeHeight));
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextTranslateCTM(context, 0.0, resizeHeight);
+	CGContextScaleCTM(context, 1.0, -1.0);
+	
+	CGContextDrawImage(context, CGRectMake(0.0, 0.0, resizeWidth, resizeHeight), [img CGImage]);
+	img = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	// Resize end
 	
 	NSData *d = UIImageJPEGRepresentation(img, 1.0);
 	const char* base64String = [[d base64Encoding] UTF8String];
