@@ -16,7 +16,7 @@ const int resizeHeight = 160;
 char* imageData;
 
 @interface PickerDelegate : NSObject<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
-@property NSString* message;
+@property (copy) NSString* message;
 @end
 
 @implementation PickerDelegate
@@ -69,7 +69,7 @@ void NativePick(int callbackNum)
 	gPickerDelegate.message = msg;
 	
 	UIImagePickerController* picker = [[UIImagePickerController alloc] init];
-	[picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+	[picker setSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 	[picker setDelegate:gPickerDelegate];
 	[picker setAllowsEditing:NO];
 	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:picker animated:NO completion:^{
