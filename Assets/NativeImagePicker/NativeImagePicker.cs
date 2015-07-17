@@ -20,6 +20,7 @@ public static class NativeImagePicker
 		{
 			_callbackReceiver = new GameObject(RECEIVER_NAME);
 			_callbackReceiver.AddComponent<NativeImagePickerReceiver>();
+			MonoBehaviour.DontDestroyOnLoad(_callbackReceiver);
 		}
 
 		if(_callbacks == null)
